@@ -124,15 +124,15 @@ class Monster_moving(Character):
         self.state = state
     def attack(self,player):
         if self.state == 'Angry':
-            if abs(self.posx - player.posx) >32  and  grid[int(self.posx/32)-1][int(self.posy/32)].wall != True:
-                if self.posx - player.posx > 32:
+            if abs(self.posx - player.posx) >32 :
+                if self.posx - player.posx > 32 and  grid[int(self.posx/32)-1][int(self.posy/32)].wall != True and (SCREEN_WIDTH>self.posx>0):
                     self.posx = self.posx - 32
-                if player.posx - self.posx > 32 and grid[int(self.posx/32)+1][int(self.posy/32)].wall != True:
+                if player.posx - self.posx > 32 and grid[int(self.posx/32)+1][int(self.posy/32)].wall != True and (SCREEN_WIDTH>self.posx>0):
                     self.posx = self.posx + 32
             if abs(self.posy - player.posy) >32:
-                if self.posy - player.posy > 32 and  grid[int(self.posx/32)][int(self.posy/32)-1].wall != True:
+                if self.posy - player.posy > 32 and  grid[int(self.posx/32)][int(self.posy/32)-1].wall != True and (SCREEN_HEIGHT>self.posy>0):
                     self.posy = self.posy - 32
-                if player.posy - self.posy > 32 and grid[int(self.posx/32)][int(self.posy/32)+1].wall != True:
+                if player.posy - self.posy > 32 and grid[int(self.posx/32)][int(self.posy/32)+1].wall != True and (SCREEN_HEIGHT>self.posy>0):
                     self.posy = self.posy + 32
             if abs(self.posy - player.posy) <=32 and abs(self.posx - player.posx) <=32 and player.life > 0:
                 player.life -= 5
